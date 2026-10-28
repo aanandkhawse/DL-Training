@@ -1,58 +1,76 @@
-import streamlit as st
-import pandas as pd
+"""A beginner-friendly Streamlit demo covering common UI components and data display."""
+
 import numpy as np
+import pandas as pd
+import streamlit as st
 
-st.title("Hello, Streamlit")
-st.write("This is my first Streamlit app")
-st.text("Let's get started")
+st.set_page_config(page_title="Streamlit Learning Demo", page_icon="📊", layout="wide")
 
-name = st.text_input("Enter your name:")
-if st.button("Greet"):
-    st.success(f"Hello, {name}!")
+st.title("Streamlit Learning Demo")
+st.caption("A hands-on collection of beginner examples for interactive Python apps.")
 
-df = pd.DataFrame(np.random.randn(10, 2), columns=["A", "B"])
-st.line_chart(df)
-st.bar_chart(df)
+with st.sidebar:
+    st.header("Demo navigation")
+    st.write("Explore the examples below: inputs, charts, CSV upload, and forms.")
 
-upload_file = st.file_uploader("Upload a CSV", type="csv")
-if upload_file is not None:
-    uploaded_df = pd.read_csv(upload_file)
-    st.dataframe(uploaded_df)
+st.header("1. Greeting")
+name = st.text_input("What's your name?", placeholder="Enter your name")
+if st.button("Greet me", type="primary"):
+    if name.strip():
+        st.success(f"Hello, {name.strip()}!")
+    else:
+        st.warning("Enter your name first.")
 
-st.title("Text and Markdown Demo")
-st.header("This is a header")
-st.subheader("This is a subheader")
-st.markdown("**Bold**, *Italic*, `code`, [link](https://streamlit.io)")
-st.code("for i in range(5):\n    print(i)", language="python")
+st.header("2. Sample charts")
+rng = np.random.default_rng(42)
+chart_data = pd.DataFrame(rng.normal(size=(10, 2)), columns=["Series A", "Series B"])
+left, right = st.columns(2)
+with left:
+    st.subheader("Line chart")
+    st.line_chart(chart_data)
+with right:
+    st.subheader("Bar chart")
+    st.bar_chart(chart_data)
 
-st.text_input("What's your name?")
-st.text_area("Write something...")
-st.number_input("Pick a number", min_value=0, max_value=100)
-st.slider("Choose a range", 0, 100)
-st.selectbox("Select a fruit", ["Apple", "Banana", "Mango"])
-st.multiselect("Choose toppings", ["Cheese", "Tomato", "Olives"])
-st.radio("Pick one", ["Option A", "Option B"])
-st.checkbox("I agree to the terms")
+st.header("3. Upload and preview a CSV")
+uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
+if uploaded_file is not None:
+    try:
+        uploaded_data = pd.read_csv(uploaded_file)
+        st.success(f"Loaded {len(uploaded_data):,} rows and {len(uploaded_data.columns):,} columns.")
+        st.dataframe(uploaded_data, use_container_width=True)
+    except (pd.errors.ParserError, UnicodeDecodeError, ValueError) as error:
+        st.error(f"Could not read this CSV file: {error}")
 
-if st.checkbox("Show details"):
-    st.info("Here are your details")
+st.header("4. Common input widgets")
+col1, col2 = st.columns(2)
+with col1:
+    st.text_area("Write a note", placeholder="Type something here...")
+    st.number_input("Choose a number", min_value=0, max_value=100, value=25)
+    st.slider("Choose a range", min_value=0, max_value=100, value=(20, 80))
+with col2:
+    st.selectbox("Choose a fruit", ["Apple", "Banana", "Mango"])
+    st.multiselect("Choose toppings", ["Cheese", "Tomato", "Olives"])
+    st.radio("Choose a view", ["Chart", "Table"], horizontal=True)
+    if st.checkbox("Show extra details"):
+        st.info("This message appears when the checkbox is selected.")
 
-option = st.radio("Choose view", ["Show chart", "Show table"])
-if option == "Show chart":
-    st.write("Chart would appear here")
-else:
-    st.write("Table would appear here")
-
-with st.form("login_form"):
+st.header("5. Form example")
+with st.form("profile_form"):
     username = st.text_input("Username")
-    password = st.text_input("Password", type="password")
-    submitted = st.form_submit_button("Login")
+    submitted = st.form_submit_button("Submit")
     if submitted:
-        st.success(f"Welcome, {username}!")
+        if username.strip():
+            st.success(f"Welcome, {username.strip()}!")
+        else:
+            st.warning("Please enter a username.")
 
-st.image(
-    "https://picjumbo.com/wp-content/uploads/beautiful-nature-wallpaper-spring-flowers-mountain-sunset-free-image.jpg",
-    caption="Sample image",
-    use_container_width=True,
-)
+st.header("6. Markdown and code")
+st.markdown("Use **bold text**, *italic text*, and links such as [Streamlit](https://streamlit.io).")
+st.code("for number in range(5):\n    print(number)", language="python")
+
+st.header("7. Video example")
 st.video("https://www.youtube.com/watch?v=wGOn7hDb3gk")
+
+st.divider()
+st.caption("Learning demo • Built with Python, Streamlit, Pandas, and NumPy")

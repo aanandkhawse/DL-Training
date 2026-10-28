@@ -1,68 +1,67 @@
-# Programming & Streamlit Learning Repository
+# Programming, Streamlit & RAG Learning Repository
 
-A collection of programming notes and hands-on exercises exploring C++, Python, data visualization, and interactive web applications with Streamlit.
+A hands-on learning repository containing C++ notes, a Streamlit demonstration, and a notebook that builds a small retrieval-augmented generation (RAG) retrieval workflow over a local text file.
 
-## Overview
+## Repository contents
 
-This repository documents programming concepts and practical experiments while learning software development and data-driven applications.
-
-## Contents
-
-| File | Description |
+| File | Purpose |
 |---|---|
-| `CPP.txt` | C++ concepts, fundamentals, and programming notes |
-| `StreamTutorial.py` | Streamlit demonstration covering user inputs, charts, CSV uploads, and UI components |
-| `RAGTutorial.ipynb` | Intended notebook for RAG-related learning; currently empty and awaiting content |
+| `CPP.txt` | Source text loaded by the RAG notebook |
+| `StreamTutorial.py` | Streamlit demo application |
+| `RAGTutorial.ipynb` | Demonstrates loading text, splitting documents, creating Hugging Face embeddings, indexing with FAISS, and similarity search |
+| `requirements.txt` | Python dependencies for the app and notebook |
+| `.gitignore` | Excludes local environments and generated files |
 
-## Technologies
+## Requirements
 
-- Python
-- Streamlit
-- Pandas
-- NumPy
-- C++
+- Python 3.10 or newer recommended
+- Internet access on the first run so the Hugging Face embedding model can be downloaded
 
-## Getting Started
+## Setup
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/aanandkhawse/DL-Training.git
-cd DL-Training
-```
-
-### 2. Create a virtual environment
+Create and activate a virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-Activate it on Windows:
+On Windows:
 
-```bash
-.venv\\Scripts\\activate
+```powershell
+.venv\\Scripts\\Activate.ps1
 ```
 
-### 3. Install dependencies
+Install dependencies:
 
 ```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 4. Run the Streamlit demonstration
+## Run the Streamlit demo
 
 ```bash
 streamlit run StreamTutorial.py
 ```
 
-The application demonstrates interactive widgets, sample charts, CSV file uploads, and basic Streamlit components.
+## Run the RAG notebook
 
-## Project Status
+Start Jupyter:
 
-This repository is a work in progress. Content and examples will be improved as learning progresses.
+```bash
+jupyter notebook
+```
+
+Open `RAGTutorial.ipynb` and run the cells from top to bottom. Keep `CPP.txt` in the same directory as the notebook because the notebook loads it using a relative path.
+
+The notebook creates embeddings with `sentence-transformers/all-MiniLM-L6-v2`, stores them in a local in-memory FAISS index, and retrieves text chunks similar to a query. It performs retrieval; it does not itself generate an answer with a language model.
+
+## Notes
+
+- The first embedding-model run may download model files.
+- The notebook builds the FAISS index during execution; the index is not persisted to disk.
+- This is a learning project. Verify and adapt examples before using them in production.
 
 ## Author
 
 **Anand Khawse**
-
-GitHub: [@aanandkhawse](https://github.com/aanandkhawse)

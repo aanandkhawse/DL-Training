@@ -1,3 +1,15 @@
+# Streamlit demo
 streamlit
 pandas
 numpy
+
+# RAG notebook: document loading, splitting, embeddings, and FAISS search
+langchain-community
+langchain-text-splitters
+langchain-huggingface
+faiss-cpu
+sentence-transformers
+
+# Notebook environment
+jupyter
+ipykernel
