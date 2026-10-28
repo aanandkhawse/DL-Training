@@ -65,3 +65,10 @@ The notebook creates embeddings with `sentence-transformers/all-MiniLM-L6-v2`, s
 ## Author
 
 **Anand Khawse**
+
+# 
+
+# GitHub: \[@aanandkhawse](https://github.com/aanandkhawse)
+
+# 
+
