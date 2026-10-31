@@ -40,8 +40,8 @@ A hands-on collection of Python, machine learning, deep learning, LLM, and Retri
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/<your-repository>.git
-cd <your-repository>
+git clone https://github.com/aanandkhawse/DL-Training.git
+cd DL-Training
 ```
 
 Replace the placeholders with your GitHub username and repository name.
