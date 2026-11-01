@@ -20,7 +20,7 @@ A hands-on collection of Python, machine learning, deep learning, LLM, and Retri
 | `app.py` | Streamlit experiment using an Ollama model and structured output parsing. |
 | `RAGTutorial.ipynb` | Notebook demonstrating document loading, splitting, Hugging Face embeddings, and FAISS similarity search. |
 | `GAN.ipynb` | Notebook implementing a Generative Adversarial Network (GAN) trained on the MNIST handwritten-digit dataset. |
-| `task.ipynb` | Empty notebook placeholder; no exercise content is currently included. |
+
 
 ## Topics and technologies
 
