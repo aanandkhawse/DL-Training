@@ -44,8 +44,6 @@ git clone https://github.com/aanandkhawse/DL-Training.git
 cd DL-Training
 ```
 
-Replace the placeholders with your GitHub username and repository name.
-
 ### 2. Create and activate a virtual environment
 
 **Windows (PowerShell):**
